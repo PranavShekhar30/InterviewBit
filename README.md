@@ -1,2 +1,2 @@
 # InterviewBit
-All Codes from InterviewBit are solved here in Java 
+All Codes from InterviewBit Platform are solved here in Java Language 
