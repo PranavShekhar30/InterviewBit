@@ -40,24 +40,25 @@ Output 2:
         
  Java:
  
- public class Solution {
+public class Solution {
     public void setZeroes(ArrayList<ArrayList<Integer>> a) {
-         HashSet<Integer> rowSet = new HashSet<>();
-        HashSet<Integer> colSet = new HashSet<>();
-        for(int row = 0; row < a.size(); row++) {
-            for(int col = 0; col < a.get(0).size(); col++) {
-                if(a.get(row).get(col) == 0) {
-                    rowSet.add(row);
-                    colSet.add(col);
-                }
-            }
+    int m=a.size();
+       int n=a.get(0).size();
+       boolean row[] = new boolean[a.size()];
+       boolean col[] = new boolean[a.get(0).size()];
+      for(int i=0;i<m;i++){
+          for(int j=0;j<n;j++){
+              if(a.get(i).get(j)==0){
+                  row[i]=true;
+                  col[j]=true;
+              }
+          }
+      }
+      for(int i=0;i<m;i++){
+          for(int j=0;j<n;j++){
+            if(row[i]||col[j]) a.get(i).set(j,0);
         }
-        for(int row = 0; row < a.size(); row++) {
-            for(int col = 0; col < a.get(0).size(); col++) {
-                if(rowSet.contains(row) || colSet.contains(col)) {
-                    a.get(row).set(col, 0);
-                }
-            }
-        }
-    }
+      }
 }
+}
+
