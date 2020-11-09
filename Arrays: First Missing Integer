@@ -30,3 +30,6 @@ if(curr < A.get(i)){
 break;
 }
 }
+return curr;
+}
+}
