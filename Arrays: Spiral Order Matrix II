@@ -1,0 +1,82 @@
+Given an integer A, generate a square matrix filled with elements from 1 to A2 in spiral order.
+
+
+
+Input Format:
+
+The first and the only argument contains an integer, A.
+Output Format:
+
+Return a 2-d matrix of size A x A satisfying the spiral order.
+Constraints:
+
+1 <= A <= 1000
+Examples:
+
+Input 1:
+    A = 3
+
+Output 1:
+    [   [ 1, 2, 3 ],
+        [ 8, 9, 4 ],
+        [ 7, 6, 5 ]   ]
+
+Input 2:
+    4
+
+Output 2:
+    [   [1, 2, 3, 4],
+        [12, 13, 14, 5],
+        [11, 16, 15, 6],
+        [10, 9, 8, 7]   ]
+        
+        
+Java:
+
+
+public class Solution {
+    public ArrayList<ArrayList<Integer>> generateMatrix(int A) {
+        int[][] r = new int[A][A];
+    int rs = 0;
+    int re = A-1;
+    int cs = 0;
+    int ce = A-1;
+    int n = 1;
+    int i = 0;
+    while(rs<=re || cs<=ce){
+        i = cs;
+        while(i <= ce){
+            r[rs][i] = n++;
+            i++;
+        }
+        rs++;
+        i = rs;
+        while(i <= re){
+            r[i][ce] = n++;
+            i++;
+        }
+        ce--;
+        i = ce;
+        while(i >= cs){
+            r[re][i] = n++;
+            i--;
+        }
+        re--;
+        i = re;
+        while(i >=rs){
+            r[i][cs] = n++;
+            i--;
+        }
+        cs++;
+    }
+    ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+    for(int j=0;j<A;j++){
+        ArrayList<Integer> row = new ArrayList<>();
+        for(int k=0;k<A;k++){
+            row.add(r[j][k]);
+        }
+        res.add(row);
+    }
+    return res;
+}
+}
