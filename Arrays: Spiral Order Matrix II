@@ -35,48 +35,42 @@ Java:
 
 
 public class Solution {
-    public ArrayList<ArrayList<Integer>> generateMatrix(int A) {
-        int[][] r = new int[A][A];
-    int rs = 0;
-    int re = A-1;
-    int cs = 0;
-    int ce = A-1;
-    int n = 1;
-    int i = 0;
-    while(rs<=re || cs<=ce){
-        i = cs;
-        while(i <= ce){
-            r[rs][i] = n++;
-            i++;
+    public int[][] generateMatrix(int A) {
+    int [][]s=new int[A][A];
+        int m=A;
+        int n=A;
+        int i,j,k=0,l=0;
+        int c=1;
+        while(k<m &&l<n)
+        {
+            for(i=l;i<n;i++)
+            {
+                s[k][i]=c++;
+            }
+            k++;
+            for(i=k;i<m;i++)
+            {
+                s[i][n-1]=c++;
+            }
+            n--;
+            if(l<n)
+            {
+                for(i=n-1;i>=l;i--)
+                {
+                    s[m-1][i]=c++;
+                }
+                m--;
+            }
+            if(k<m)
+            {
+                for(i=m-1;i>=k;i--)
+                {
+                    s[i][l]=c++;
+                }
+                l++;
+             }
         }
-        rs++;
-        i = rs;
-        while(i <= re){
-            r[i][ce] = n++;
-            i++;
-        }
-        ce--;
-        i = ce;
-        while(i >= cs){
-            r[re][i] = n++;
-            i--;
-        }
-        re--;
-        i = re;
-        while(i >=rs){
-            r[i][cs] = n++;
-            i--;
-        }
-        cs++;
+        return s;
     }
-    ArrayList<ArrayList<Integer>> res = new ArrayList<>();
-    for(int j=0;j<A;j++){
-        ArrayList<Integer> row = new ArrayList<>();
-        for(int k=0;k<A;k++){
-            row.add(r[j][k]);
-        }
-        res.add(row);
+        
     }
-    return res;
-}
-}
