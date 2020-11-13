@@ -76,4 +76,56 @@ Output 2:
     return min;
 }    
 }
+        OR
         
+        
+ public class Solution {
+    public int findMedian(int[][] A) {
+        int r = A.length;
+        int c = A[0].length;
+        if(r==0 && c==0){
+            return 0;
+        }
+        int min = A[0][0];
+        int max=A[r-1][c-1];
+        for(int i=0;i<r;i++){
+            if(A[i][0]<min){
+                min = A[i][0];
+            }
+            if(A[i][c-1] > max){
+                max = A[i][c-1];   
+            }
+        }
+        int desired = 1+(r*c)/2;
+        while(min<max){
+            int midpt = (min+max)/2;
+            int count = findNosIn2DArray(midpt,A);
+            if(count<desired){
+                min = midpt+1;
+            }else{
+                max = midpt;
+            }
+        }
+        return max;
+    }
+    
+    public int findNosIn2DArray(int k,int[][]A){
+        
+        int r = A.length;
+        int c = A[0].length;
+        
+        int counter =0;
+        for(int i=0;i<r;i++){
+            for(int j =0;j<c;j++){
+                if(A[i][j]<=k){
+                    counter = counter+1;
+                }
+            }
+        }
+        return counter;
+    }
+   
+}
+
+       
+  
